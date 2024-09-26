@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            var  connection = new WebSocket('ws://localhost:5035/ws');
+            connection.onopen = function(){
+                
+            }
+            connection.onmessage = function(e) {
+                var container = document.getElementById("message");
+                container.innerHTML = "<p><b>Server: </b>"+ e.data +"</p>";
+            }
+
+            function send()
+            {
+                var text = document.getElementById("textMsg").value;
+                connection.send(text);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="message"></div>
+        <div>
+            <input type="text" id="textMsg"><button onclick="send()">Send</button>
+        </div>
+    </body>
+</html>
